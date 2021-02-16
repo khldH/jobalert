@@ -11,17 +11,17 @@ app.include_router(users.router, tags=["users"])
 app.include_router(job_categories.router, tags=["job_categories"])
 
 
-@app.on_event("startup")
-def startup_event():
-    models.Base.metadata.create_all(bind=engine)
-    db: Session = SessionLocal()
-    user = crud.get_user_by_email(db, settings.super_user_email)
-    if not user:
-        user_in = schemas.UserCreate(
-            email=settings.super_user_email, password=settings.super_user_password
-        )
-        crud.create_user(db, user_in)
-    db.close()
+# @app.on_event("startup")
+# def startup_event():
+#     models.Base.metadata.create_all(bind=engine)
+#     db: Session = SessionLocal()
+#     user = crud.get_user_by_email(db, settings.super_user_email)
+#     if not user:
+#         user_in = schemas.UserCreate(
+#             email=settings.super_user_email, password=settings.super_user_password
+#         )
+#         crud.create_user(db, user_in)
+#     db.close()
 
 
 # @app.post("/login/access-token", response_model=schemas.Token)
