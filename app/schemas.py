@@ -31,7 +31,6 @@ class User(UserBase):
     id: int
     is_active: bool
     categories: List[JobCategory] = []
-    phone_number: str = None
 
     class Config:
         orm_mode = True
